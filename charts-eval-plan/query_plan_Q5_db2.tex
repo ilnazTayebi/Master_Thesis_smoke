@@ -1,0 +1,23 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT P.P_PARTKEY, SUM(PS.PS_SUPPLYCOST) AS TOTAL_SUPPLY_COST FROM Part P JOIN Partsupp PS ON P.P_PARTKEY = PS.PS_PARTKEY GROUP BY P.P_PARTKEY;
+                                        QUERY PLAN
+----------------------------------------------------------------
+GroupAggregate  (cost=0.25..16.31 rows=1 width=36)
+  Group Key: p.p_partkey
+  ->  Nested Loop  (cost=0.25..16.29 rows=1 width=22)
+        Join Filter: (p.p_partkey = ps.ps_partkey)
+        ->  Index Only Scan using part_pkey on part p  (cost=0.12..8.14 rows=1 width=4)
+        ->  Index Scan using partsupp_pkey on partsupp ps  (cost=0.12..8.14 rows=1 width=22)
+\end{minted}
+\caption[Query Plan for Database: pgSemiRawPk and Q5.]{Query Plan for Database: pgSemiRawPk and Q5. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q5-db2}
+\end{figure}

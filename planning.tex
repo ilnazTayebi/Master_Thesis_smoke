@@ -1,0 +1,203 @@
+\documentclass[sigconf,natbib=false]{acmart}
+\usepackage[utf8]{inputenc}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\setcopyright{none}
+\copyrightyear{}
+\acmYear{2023}
+\acmDOI{0000000000}
+\acmConference[]{}{}
+\acmBooktitle{} 
+\acmPrice{}
+\acmISBN{}
+\usepackage{graphicx}
+\graphicspath{ {img} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\usepackage{footnote}
+\addbibresource{references.bib}
+\usepackage{tabularx}
+\usepackage{xifthen}
+\usepackage{pgfgantt}
+\usepackage{adjustbox}
+\usepackage[acronym]{glossaries}
+\usepackage{datetime}
+\usepackage{siunitx}
+\renewcommand{\dateseparator}{-}
+\ganttset{calendar week text={\currentweek}}
+\usepackage{environ}
+\usepackage{hyperref}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the planning content
+% ------------------------------------------------------------------------------------------
+\newif\ifshow
+\showtrue % \showtrue or \showfalse
+% ------------------------------------------------------------------------------------------
+\ifshow
+    \makeglossaries
+\fi
+
+\NewEnviron{planning}[1][red]{
+  \ifshow
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the placeholder content
+% ------------------------------------------------------------------------------------------
+\newif\ifplaceholder
+\placeholdertrue % \placeholdertrue or \placeholderfalse
+% ------------------------------------------------------------------------------------------
+\NewEnviron{placeholder}[1][orange]{
+  \ifplaceholder
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the planning content
+% ------------------------------------------------------------------------------------------
+\newif\ifinformation
+\informationfalse % \informationtrue or \informationfalse
+% ------------------------------------------------------------------------------------------
+\NewEnviron{information}[1][violet]{
+  \ifinformation
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+
+\newcommand\rqf[1]{\paragraph{\textbf{\acrshort{rq#1}}}}
+\newcommand\ds[1]{\paragraph{\textbf{\acrshort{ds#1}}}}
+
+\newacronym{pi}{PI}{Phase I}
+\newacronym{pii}{PII}{Phase II}
+\newacronym{piii}{PIII}{Phase III}
+
+
+\begin{document}
+
+\title{\begin{placeholder}\end{placeholder}}
+
+\author{Ilnaz Tayebi}
+\email{tayebi01@ads.uni-passau.de}
+\affiliation{\institution{University of Passau}\city{Passau}\country{Germany}}
+
+\fancyfoot{}
+\thispagestyle{empty}
+\settopmatter{printacmref=false}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+
+\begin{planning}
+
+\section*{Tasks}
+
+\subsection*{\acrlong{pi}}
+
+\begin{itemize}
+    \item Install MySql
+    \item load data TPC-H
+    \item dump data
+
+\end{itemize}
+
+\subsection*{\acrlong{pii}}
+\begin{itemize}
+    \item prepare presentation
+    \item  check if Dump data also sorted
+    \item Is B+ Tree or BTree    
+\end{itemize}
+
+\subsection*{\acrlong{piii}}
+\begin{itemize}
+    \item start writing up the Related Work
+    \item  get PostgresRAW to work, either compiled directly or via the docker recipe provided, and get it to the point where we can run a smoke test
+    \item Write a summary about running the PostgresRaw
+    \item investigate: what is the difference between dump in PostgreSQL and in MySQL?
+    \item write Abstract
+    \item watch Video -> database cracking \cite{google_techtalks_database_2007} and \cite{microsoft_research_database_2016}
+    \item finds all related work and state of the arts of database cracking
+    \item Write to Prof.Kosch
+\end{itemize}
+
+\end{planning}
+
+% \ifshow
+%     \pagebreak
+% \fi
+
+
+
+% \begin{planning}
+    
+
+% \end{planning}
+
+
+\begin{planning}[black]
+
+\begin{figure*}
+\centering
+\begin{ganttchart}[ 
+    vgrid={*{6}{draw=none}, dotted}, 
+    hgrid,
+    inline,
+    x unit=.06cm, 
+    y unit title=.8cm, 
+    y unit chart=1.2cm,
+    title/.append style={shape=rectangle, fill=black!10},
+    title height=1,
+    time slot format=isodate, 
+    time slot format/start date=2024-05-01, 
+    today={\the\year-\the\month-\the\day}, 
+    today offset=.5,
+    progress=today,
+    progress label text={},
+    bar/.append style={fill=green},
+    bar incomplete/.append style={fill=black!10},
+    bar progress label anchor=south,
+    bar progress label node/.append style={below=0pt},
+    group/.append style={draw=black,fill=black},
+    group incomplete/.append style={draw=black,fill=black!60},
+    group progress label anchor=south,
+    group progress label node/.append style={below=0pt},
+    milestone inline label anchor=north,
+    milestone inline label node/.append style={above=0pt},
+    Mile1/.style={milestone/.append style={fill=blue}},
+    Mile2/.style={milestone/.append style={fill=red}},
+    Mile2/.append style={milestone inline label anchor=east},
+    Mile2/.append style={milestone inline label node/.append style={left=5pt}}
+    ]{2024-05-12}{2024-11-20} 
+\newcommand\textganttbar[5][]{
+    \ganttbar[#1, inline,bar label font=\footnotesize]{#2}{#3}{#4}
+}
+\gantttitlecalendar{year, month=name, week} \\ 
+\ganttgroup[inline]{PI:}{2024-05-12}{2024-05-13} \\
+\textganttbar[bar/.append style={fill=magenta!50}]{Report I}{2024-05-12}{2024-05-13} \\
+\ganttmilestone[Mile1]{Meeting PI}{2024-05-12} \\
+\ganttgroup[inline]{PII}{2024-05-12}{2024-05-13} \\
+\textganttbar[bar/.append style={fill=purple!50}]{Report II}{2024-05-12}{2024-05-13} \\
+\ganttmilestone[Mile2]{Meeting PII}{2024-05-14} \\
+\ganttgroup[inline]{PIII}{2024-05-14}{2024-06-17} \\
+\textganttbar[bar/.append style={fill=violet!50}]{Report III}{2024-05-14}{2024-07-04} \\
+\ganttmilestone[Mile3]{Meeting PIII}{2024-07-04} \\ 
+\end{ganttchart} 
+
+\end{figure*}
+
+\end{planning}
+
+    \printglossary[type=\acronymtype]
+\end{document}

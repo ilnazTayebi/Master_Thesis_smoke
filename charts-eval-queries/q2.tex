@@ -1,0 +1,17 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT O_ORDERKEY, O_TOTALPRICE
+    FROM Orders
+    WHERE O_TOTALPRICE > 100000;
+    \end{minted}
+\caption[Q2: query to evaluate the impact of metadata on table scans and filtering.]{Q2: Fetch all orders above a certain price. Evaluate the impact of metadata on simple table scans and filtering}
+\label{fig:eval-q2}
+\end{figure}

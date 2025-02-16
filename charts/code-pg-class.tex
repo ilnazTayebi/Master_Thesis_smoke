@@ -1,0 +1,17 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT relname, reltuples, relpages
+    FROM pg_class
+    WHERE relname = 'supplier';
+    \end{minted}
+\caption[Query over pg\_class over the TPC-H dataset]{Query over pg\_class over the TPC-H dataset with the \acrshort{sf} 0.1. provide table-level statistics, \textbf{reltuples}: Approximate number of rows in the table, \textbf{relname}: relation name, \textbf{relpages}: Approximate number of pages used by the table.}
+\label{fig:query-pg-class}
+\end{figure}

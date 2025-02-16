@@ -1,0 +1,22 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT C.C_NAME, C.C_ADDRESS, O.O_ORDERKEY, O.O_TOTALPRICE FROM Customer C JOIN Orders O ON C.C_CUSTKEY = O.O_CUSTKEY WHERE C.C_NATIONKEY = 10;
+                                        QUERY PLAN
+----------------------------------------------------------------
+Nested Loop  (cost=0.00..8490.01 rows=1 width=86)
+  Join Filter: (c.c_custkey = o.o_custkey)
+  ->  Seq Scan on customer c  (cost=0.00..6319.00 rows=1 width=68)
+        Filter: (c_nationkey = 10)
+  ->  Seq Scan on orders o  (cost=0.00..2171.00 rows=1 width=26)
+\end{minted}
+\caption[Query Plan for Database: pgRaw and Q3.]{Query Plan for Database: pgRaw and Q3. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q3-db1}
+\end{figure}

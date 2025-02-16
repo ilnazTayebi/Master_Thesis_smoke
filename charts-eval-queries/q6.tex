@@ -1,0 +1,17 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT O.O_CUSTKEY, AVG(O.O_TOTALPRICE) AS AVG_TOTAL_PRICE
+    FROM Orders O
+    GROUP BY O.O_CUSTKEY;
+    \end{minted}
+\caption[Q6: query to evaluate the effect of statistics metadata on aggregation and grouping.]{Q6: Calculate the average total price of orders per customer. Evaluate how statistics metadata influences aggregation and grouping.}
+\label{fig:eval-q6}
+\end{figure}

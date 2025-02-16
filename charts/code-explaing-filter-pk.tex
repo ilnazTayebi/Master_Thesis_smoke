@@ -1,0 +1,21 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    EXPLAIN select * from LINEITEM where L_ORDERKEY < 100;
+                                         QUERY PLAN
+    ------------------------------------------------------------------------------------
+    Index Scan using lineitem_pkey on lineitem  (cost=0.42..180.45 rows=98 width=117)
+      Index Cond: (l_orderkey < 100)
+    (2 rows)
+    
+    \end{minted}
+\caption[EXPLAIN Query with WHERE clause over the primary key]{EXPLAIN Query with WHERE clause over the primary key with the startup cost of 0.42 milliseconds and the total cost of 180.45 milliseconds. The estimated number of rows is 98, and the estimated average width of rows is 117. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:query-filter-pk}
+\end{figure}

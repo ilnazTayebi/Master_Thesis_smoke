@@ -1,0 +1,7 @@
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{img/pgRawChart.pdf}
+\caption[PostgresRaw and PostgresRaw-UI architecture.]{PostgresRaw~\cite{noauthor_hbpmedicalpostgresraw_2022} and PostgresRaw-UI \cite{noauthor_hbpmedicalpostgresraw-ui_2018} architecture. The sniffer monitors a Raw data files directory for new or modified files and automatically updates Snoop.conf.  
+ The Inferrer registers them in a PostgreRaw database by creating corresponding table schemas based on the Raw data file content. PostgresRaw added snooping and NODB modules to PostgreSQL in order to provide Adaptive Indexing and Caching.}
+\label{fig:pgRaw-architecture}
+\end{figure}

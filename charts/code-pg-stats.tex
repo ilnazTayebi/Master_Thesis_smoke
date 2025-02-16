@@ -1,0 +1,17 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT attname, n_distinct, most_common_vals
+    FROM pg_stats
+    WHERE tablename = 'customer';
+    \end{minted}
+\caption[The pg\_stats view]{The pg\_stats view provides statistics for the customer table in the TPC-H dataset with a \acrshort{sf} 0.1. provides details about column-level statistics. (\textbf{n\_distinct}: Number of distinct values, \textbf{null\_frac}: Fraction of null values in the column, most\_common\_vals: Most common values in the column.)}
+\label{fig:query-pg-stats}
+\end{figure}

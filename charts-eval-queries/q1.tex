@@ -1,0 +1,21 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT S_NAME, S_ADDRESS
+    FROM Supplier
+    WHERE S_NATIONKEY IN (
+        SELECT N_NATIONKEY
+        FROM Nation
+        WHERE N_REGIONKEY = 1
+    );
+    \end{minted}
+\caption[Q1: query to evaluate the impact of metadata on table scans and filtering.]{Q1: Fetch all suppliers in a specific region. Evaluate the impact of metadata on simple table scans and filtering}
+\label{fig:eval-q1}
+\end{figure}

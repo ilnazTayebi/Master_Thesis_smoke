@@ -1,0 +1,51 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+        \begin{axis}
+        [            
+            xlabel={Datbase popularity(percentage)},
+            % ylabel={Ten top-ranked databases}, 
+            width=0.7\textwidth,
+            height=0.6\textwidth,
+            xbar,
+            bar width=10pt,
+            ytick=data,
+            tickwidth=0pt, 
+            y axis line style={draw=none},            
+            enlarge y limits=0.03,
+            xmin=0,     
+            axis background/.style={fill=lightviolet},
+            nodes near coords,
+            symbolic y coords=
+            {
+                Dynamodb,
+                Oracle,
+                Elasticsearch,
+                MariaDB,
+                Redis,
+                MongoDB,
+                Microsoft SQL Server,
+                SQLite,
+                MySQL,
+                PostgreSQL
+            },           
+          ]
+            \addplot[xbar,fill=blueviolet]
+            coordinates {   
+                (7.9,Dynamodb) 
+                (10.1,Oracle) 
+                (12.5,Elasticsearch) 
+                (17.2,MariaDB)
+                (20,Redis)
+                (24.8,MongoDB)
+                (25.3,Microsoft SQL Server)
+                (33.1,SQLite)
+                (40.3,MySQL)
+                (48.7,PostgreSQL)               
+            };
+        \end{axis}
+\end{tikzpicture}
+
+\caption[Database ranked 10th among 35 databases]{Database ranked 10th among 35 databases, based on 52,418 entries responses.~\cite{noauthor_technology_2024}}
+\label{fig:database-Poularity}
+\end{figure}

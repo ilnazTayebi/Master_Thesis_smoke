@@ -1,0 +1,22 @@
+
+\begin{figure}[h]
+\centering
+    \begin{minted}[
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,    
+    ]{text}
+
+    EXPLAIN select * from LINEITEM where l_suppkey < 2000;
+                                QUERY PLAN
+    -------------------------------------------------------------------
+    Seq Scan on lineitem  (cost=0.00..18795.15 rows=600513 width=117)
+      Filter: (l_suppkey < 2000)
+    (2 rows)
+    
+    \end{minted}
+
+\caption[EXPLAIN Query with WHERE clause]{EXPLAIN Query with WHERE clause with the startup cost of 0.00 milliseconds and the total cost of 18795.15 milliseconds. The estimated number of rows is 600513, and the estimated average width of rows is 117. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:query-where}
+\end{figure}

@@ -1,0 +1,28 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT P.P_NAME, S.S_NAME, PS.PS_SUPPLYCOST FROM Part P JOIN Partsupp PS ON P.P_PARTKEY = PS.PS_PARTKEY JOIN Supplier S ON PS.PS_SUPPKEY = S.S_SUPPKEY JOIN Nation N ON S.S_NATIONKEY = N.N_NATIONKEY WHERE N.N_REGIONKEY = 2;
+                                        QUERY PLAN
+----------------------------------------------------------------
+Nested Loop  (cost=0.00..1773.04 rows=1 width=82)
+  Join Filter: (s.s_nationkey = n.n_nationkey)
+  ->  Nested Loop  (cost=0.00..1773.03 rows=1 width=86)
+        Join Filter: (ps.ps_suppkey = s.s_suppkey)
+        ->  Nested Loop  (cost=0.00..1756.01 rows=1 width=54)
+              Join Filter: (p.p_partkey = ps.ps_partkey)
+              ->  Seq Scan on part p  (cost=0.00..327.00 rows=1 width=36)
+              ->  Seq Scan on partsupp ps  (cost=0.00..1429.00 rows=1 width=26)
+        ->  Seq Scan on supplier s  (cost=0.00..17.00 rows=1 width=40)
+  ->  Seq Scan on nation n  (cost=0.00..0.00 rows=1 width=4)
+        Filter: (n_regionkey = 2)
+\end{minted}
+\caption[Query Plan for Database: pgRaw and Q4.]{Query Plan for Database: pgRaw and Q4. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q4-db1}
+\end{figure}

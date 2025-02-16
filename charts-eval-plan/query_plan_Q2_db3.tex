@@ -1,0 +1,19 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT O_ORDERKEY, O_TOTALPRICE FROM Orders WHERE O_TOTALPRICE > 100000;
+                                        QUERY PLAN
+----------------------------------------------------------------
+Seq Scan on orders  (cost=0.00..2171.00 rows=1 width=22)
+  Filter: (o_totalprice > 100000'::numeric)'
+\end{minted}
+\caption[Query Plan for Database: pgSemiRawNullValue and Q2.]{Query Plan for Database: pgSemiRawNullValue and Q2. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q2-db3}
+\end{figure}

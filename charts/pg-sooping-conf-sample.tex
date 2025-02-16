@@ -1,0 +1,23 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+filename-1 = '/home/NODB/datasets/customer.csv'
+relation-1 = 'customer'
+delimiter-1 = ','
+header-1 = 'True'
+
+filename-2 = '/home/NODB/datasets/orders.csv'
+relation-2 = 'orders'
+delimiter-2 = ','
+header-2 = 'True'
+    \end{minted}
+\caption[Sample of snoop.conf]{The snoop.conf sample after registering the two raw data files in PostgresRaw/~PostgresSemiRaw. The configuration file contains a list of the raw data files from which PostgresRaw/~PostgresSemiRaw retrieves information. Each property's associated number signifies the order of the CSV files directory.}
+\label{fig:pg-sooping-conf-sample}
+\end{figure}

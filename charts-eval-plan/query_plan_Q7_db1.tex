@@ -1,0 +1,22 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT P.P_NAME FROM Part P WHERE NOT EXISTS (SELECT 1 FROM Partsupp PS WHERE PS.PS_PARTKEY = P.P_PARTKEY);
+                                        QUERY PLAN
+----------------------------------------------------------------
+Nested Loop Anti Join  (cost=0.00..1756.02 rows=1 width=32)
+  Join Filter: (ps.ps_partkey = p.p_partkey)
+  ->  Seq Scan on part p  (cost=0.00..327.00 rows=1 width=36)
+  ->  Materialize  (cost=0.00..1429.01 rows=1 width=4)
+        ->  Seq Scan on partsupp ps  (cost=0.00..1429.00 rows=1 width=4)
+\end{minted}
+\caption[Query Plan for Database: pgRaw and Q7.]{Query Plan for Database: pgRaw and Q7. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q7-db1}
+\end{figure}

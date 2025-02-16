@@ -1,0 +1,33 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+% !TeX root = ../thesis.tex
+
+\chapter{Implementation}
+\label{chapter:implementation}
+\section{Prepration}
+
+\begin{itemize}
+    \item debugging the project
+    \item prepare the project for debugging- installing gdb
+\end{itemize}
+
+\section{PostgresRAW-UI}
+
+\section{Initialize database}
+In the first step, in order to distinguish between PostgresRaw and PostgresSemiraw, we added a configuration named enable\_invisible\_metadata to the postgresql.conf.
+\section{Create database}
+\begin{revise}
+\begin{itemize}
+    \item Postgres and postgresraw => createdb
+    \item postgresSemira => createsemiradb
+    set up the database under the maintenance database (postgres).... initialize initialiser the created database
+\end{itemize}
+\end{revise}
+
+\section{Running experiment}
+Added a new slash command $\backslash$exp to run experiments and measure the query execution time for the set of queries provided in the file next to the project.
+
+Added a new slash command $\backslash$plan to run experiments and generate the query plan for the set of queries provided in the file next to the project. The results are in the CSV file in a folder named result beside the project.
+
+
+

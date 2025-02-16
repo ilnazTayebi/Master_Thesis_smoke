@@ -1,0 +1,18 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT P.P_PARTKEY, SUM(PS.PS_SUPPLYCOST) AS TOTAL_SUPPLY_COST
+    FROM Part P
+    JOIN Partsupp PS ON P.P_PARTKEY = PS.PS_PARTKEY
+    GROUP BY P.P_PARTKEY;
+    \end{minted}
+\caption[Q5: query to evaluate the effect of statistical metadata on aggregation and grouping.]{Q5: Calculate the total supply cost for each part. Evaluate how statistics metadata influences aggregation and grouping.}
+\label{fig:eval-q5}
+\end{figure}

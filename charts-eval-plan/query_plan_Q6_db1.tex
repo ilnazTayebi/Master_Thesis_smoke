@@ -1,0 +1,22 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT O.O_CUSTKEY, AVG(O.O_TOTALPRICE) AS AVG_TOTAL_PRICE FROM Orders O GROUP BY O.O_CUSTKEY;
+                                        QUERY PLAN
+----------------------------------------------------------------
+GroupAggregate  (cost=2171.01..2171.03 rows=1 width=36)
+  Group Key: o_custkey
+  ->  Sort  (cost=2171.01..2171.02 rows=1 width=22)
+        Sort Key: o_custkey
+        ->  Seq Scan on orders o  (cost=0.00..2171.00 rows=1 width=22)
+\end{minted}
+\caption[Query Plan for Database: pgRaw and Q6.]{Query Plan for Database: pgRaw and Q6. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q6-db1}
+\end{figure}

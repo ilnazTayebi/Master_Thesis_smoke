@@ -1,0 +1,22 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT S_NAME, S_ADDRESS FROM Supplier WHERE S_NATIONKEY IN (SELECT N_NATIONKEY FROM Nation WHERE N_REGIONKEY = 1);
+                                        QUERY PLAN
+----------------------------------------------------------------
+Nested Loop Semi Join  (cost=0.00..17.01 rows=1 width=166)
+  Join Filter: (supplier.s_nationkey = nation.n_nationkey)
+  ->  Seq Scan on supplier  (cost=0.00..17.00 rows=1 width=170)
+  ->  Seq Scan on nation  (cost=0.00..0.00 rows=1 width=4)
+        Filter: (n_regionkey = 1)
+\end{minted}
+\caption[Query Plan for Database: pgSemiRawFkPk and Q1.]{Query Plan for Database: pgSemiRawFkPk and Q1. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q1-db6}
+\end{figure}

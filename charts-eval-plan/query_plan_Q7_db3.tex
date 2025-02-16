@@ -1,0 +1,21 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT P.P_NAME FROM Part P WHERE NOT EXISTS (SELECT 1 FROM Partsupp PS WHERE PS.PS_PARTKEY = P.P_PARTKEY);
+                                        QUERY PLAN
+----------------------------------------------------------------
+Merge Anti Join  (cost=0.25..16.29 rows=1 width=128)
+  Merge Cond: (p.p_partkey = ps.ps_partkey)
+  ->  Index Scan using part_pkey on part p  (cost=0.12..8.14 rows=1 width=132)
+  ->  Index Only Scan using partsupp_pkey on partsupp ps  (cost=0.12..8.14 rows=1 width=4)
+\end{minted}
+\caption[Query Plan for Database: pgSemiRawNullValue and Q7.]{Query Plan for Database: pgSemiRawNullValue and Q7. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q7-db3}
+\end{figure}

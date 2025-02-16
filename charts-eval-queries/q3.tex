@@ -1,0 +1,18 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}    
+    SELECT C.C_NAME, C.C_ADDRESS, O.O_ORDERKEY, O.O_TOTALPRICE
+    FROM Customer C
+    JOIN Orders O ON C.C_CUSTKEY = O.O_CUSTKEY
+    WHERE C.C_NATIONKEY = 10;
+    \end{minted}
+\caption[Q3: query to evaluate the effect of metadata on table joins, where primary keys, foreign keys, and statistics affect the query plan.]{Q3: Fetch customers and their orders in a specific nation. Evaluate the effect of metadata on table joins, where primary keys, foreign keys, and statistics affect the query plan.}
+\label{fig:eval-q3}
+\end{figure}

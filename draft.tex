@@ -1,0 +1,428 @@
+\documentclass[sigconf,natbib=false]{acmart}
+\usepackage[utf8]{inputenc}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\setcopyright{none}
+\copyrightyear{}
+\acmYear{2023}
+\acmDOI{0000000000}
+\acmConference[]{}{}
+\acmBooktitle{} 
+\acmPrice{}
+\acmISBN{}
+\usepackage{graphicx}
+\graphicspath{ {img} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\usepackage{footnote}
+\addbibresource{references.bib}
+\usepackage{tabularx}
+\usepackage{xifthen}
+\usepackage{pgfgantt}
+\usepackage{adjustbox}
+\documentclass[sigconf,natbib=false]{acmart}
+\usepackage[utf8]{inputenc}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\setcopyright{none}
+\copyrightyear{}
+\acmYear{2023}
+\acmDOI{0000000000}
+\acmConference[]{}{}
+\acmBooktitle{} 
+\acmPrice{}
+\acmISBN{}
+\usepackage{graphicx}
+\graphicspath{ {img} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\usepackage{footnote}
+\addbibresource{references.bib}
+\usepackage{tabularx}
+\usepackage{xifthen}
+\usepackage{pgfgantt}
+\usepackage{adjustbox}
+\usepackage[acronym]{glossaries}
+\usepackage{datetime}
+\usepackage{siunitx}
+\renewcommand{\dateseparator}{-}
+\ganttset{calendar week text={\currentweek}}
+\usepackage{environ}
+\usepackage{hyperref}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the draft content
+% ------------------------------------------------------------------------------------------
+\newif\ifshow
+\showtrue % \showtrue or \showfalse
+% ------------------------------------------------------------------------------------------
+\ifshow
+    \makeglossaries
+\fi
+
+\NewEnviron{draft}[1][gray]{
+  \ifshow
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the placeholder content
+% ------------------------------------------------------------------------------------------
+\newif\ifplaceholder
+\placeholdertrue % \placeholdertrue or \placeholderfalse
+% ------------------------------------------------------------------------------------------
+\NewEnviron{placeholder}[1][orange]{
+  \ifplaceholder
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the draft content
+% ------------------------------------------------------------------------------------------
+\newif\ifinformation
+\informationfalse % \informationtrue or \informationfalse
+% ------------------------------------------------------------------------------------------
+\NewEnviron{information}[1][violet]{
+  \ifinformation
+    \textcolor{#1}{\BODY}
+  \fi
+}
+
+% ------------------------------------------------------------------------------------------
+
+\newcommand\rqf[1]{\paragraph{\textbf{\acrshort{rq#1}}}}
+\newcommand\ds[1]{\paragraph{\textbf{\acrshort{ds#1}}}}
+
+\newacronym{pi}{PI}{Phase I}
+\newacronym{pii}{PII}{Phase II}
+\newacronym{piii}{PIII}{Phase III}
+
+
+\begin{document}
+
+\title{\begin{placeholder}\end{placeholder}}
+
+\author{Ilnaz Tayebi}
+\email{tayebi01@ads.uni-passau.de}
+\affiliation{\institution{University of Passau}\city{Passau}\country{Germany}}
+
+\fancyfoot{}
+\thispagestyle{empty}
+\settopmatter{printacmref=false}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+
+\begin{draft}
+
+\section{Points}
+\begin{itemize}
+    \item Compare PostgresRaw with PostgreSQL on TPC-H dataset (scale factor 10)
+    \item building database Kernel
+    \item hybrid version of the column db and row db is the better version. => Adaptive storage. based on the query make a decision on which type of data storage is better.
+    \item gain knowledge on how data is organized !!!!
+    \item There is research at MIT University about whether it is efficient to get the row store and convert it to a column store and the answer is no.
+    \item selection cracking => adaptive algorithm for updating => sideways and partial cracking(self organization tuple reconstruction in column stores) => Crack joins => Adaptive indexing(Merging what's cracked , cracking what's merged adaptive indexing in main memory column store)
+    \item Cracking Tangram
+    \item topics on db cracking(Aug 17,2016): 
+    \begin{enumerate}
+     \textbf{\item Disk-based craking
+        \item concurrency control
+        \item cracking + Auto-tuning tools}
+        \item Compression
+        \item Workload robustness
+        \item multi-core cracking
+        \item Aggregations
+        \item Optimizer rules
+        \item Row-store cracking
+        \item Pipelined cracking
+    \end{enumerate}  
+\end{itemize}
+
+\section{Topics}
+
+    \begin{itemize}
+        \item Self-organization of Indexing
+           \item self organization of Database system(in terms of Data structure)
+              \item Atonomizing organizing Indexing
+                 \item Self-Tuning Database System
+    \end{itemize}
+    
+\section{Run PostgressRaw}
+I have run the PostgrassRaw and Postgra\_UI using the docker file, in the next step I registered the CSV files as tables. We can also use CSV, JSON, or Text to register the data files.
+\begin{enumerate}
+    \item In the first step, to run the PostgrassRaw, I follow the steps in the readme of the following repository.\href{https://github.com/HBPMedical/PostgresRAW-docker}{Link}
+
+\item After cloning the project, and building and running the Docker image, we must then mount the CSV files to the database. The configuration details are provided in the following link:
+ \href{https://github.com/HBPMedical/PostgresRAW?tab=readme-ov-file#configuring-postgresraw}{Link}
+
+\item There is a web interface, which will also watch the folder and automatically register files.
+\href{https://github.com/HBPMedical/PostgresRAW-UI-docker}{Link}
+
+\item Check out the following link to see what postgresRaw-Ul looks like:
+\href{https://docs.google.com/presentation/d/1KapOfryxOoCNvYPEL46gakVLlgRQWa35plUXsbrLkwA/edit?usp=sharing}{Link}
+\end{enumerate}
+
+\section{PostgresSQL dump}
+\begin{enumerate}
+ \item  Tools Used
+    PostgreSQL:
+        pg_dump: The primary tool for creating a dump of a PostgreSQL database.
+        pg_dumpall: Dumps all databases in a cluster, including global objects like roles and tablespaces.
+    MySQL:
+        mysqldump: The main tool for creating a dump of a MySQL database.
+ \item Command Line Syntax PostgreSQL:
+
+    pg_dump [options] [dbname] > [file]
+    MySQL:
+    mysqldump [options] [dbname] > [file]
+
+ \itemOutput Format PostgreSQL:
+    Supports various output formats:
+    Plain text SQL script (default)
+    Custom (compressed binary format)
+    Directory (each table is a separate file)
+    TAR (archived format)
+    MySQL:
+    Primarily outputs in plain text SQL scripts.
+    Also supports XML and other formats with additional options.
+ \item Compression PostgreSQL:
+
+    pg_dump supports built-in compression when using custom or directory formats.
+    Can use external tools (e.g., gzip) for compressing plain text dumps.
+MySQL:
+
+No built-in compression for mysqldump.
+Can use external tools (e.g., gzip) for compressing dumps.
+ \item Concurrent Dumps PostgreSQL:
+
+pg_dump can use multiple threads with the -j option in the directory or custom formats to speed up the dump process.
+MySQL:
+mysqldump is single-threaded, but parallel dump tools like mydumper exist.
+ \item Transaction Consistency PostgreSQL:
+
+pg_dump ensures consistent snapshots using the MVCC (Multi-Version Concurrency Control) system.
+Dumps are transactionally consistent by default, meaning the dump reflects the state of the database at the start of the dump process.
+MySQL:
+
+mysqldump can use options like --single-transaction to ensure transaction consistency (InnoDB tables only).
+For MyISAM tables, --lock-tables is used to lock tables during the dump.
+ \item Schema and Data Separation PostgreSQL:
+
+    pg_dump can dump schema only (-s option) or data only (-a option).
+    MySQL:
+
+mysqldump can also separate schema (--no-data option) and data (--no-create-info option).
+ \item Restoring Dumps PostgreSQL:
+
+    Use psql for plain text dumps: psql [dbname] < [file]
+    Use pg_restore for custom, directory, and TAR formats: pg_restore [options] [file]
+    MySQL:
+
+Use mysql for plain text dumps: mysql [dbname] < [file]
+Use mysqlimport or other tools for specific import needs.
+ \item Global Objects and All Databases PostgreSQL:
+    pg_dumpall is used to dump all databases and global objects.
+    pg_dumpall > [file]
+    MySQL:
+    
+    mysqldump can be used with the --all-databases option to dump all databases.
+    mysqldump --all-databases > [file]
+\end{enumerate}
+
+\section{Setting up the project and merge original projects}
+ We can't fork the project. because it is a public project and we initially want to have a private project. As a result, we need to find a solution to combine all four projects.
+The solution that we have chosen is using the pull --mirror command.
+\begin{itemize}
+     \item renames the master branch of origin and local to prevent push --mirror command rewrite on our project's master branch.
+    \item create a new branch from our project's master branch
+    \item clone --mirror project A
+    \item push --mirror
+    \item Use \textbf{git pull origin master --allow-unrelated-histories} to prevent the fatal: refusing to merge unrelated histories error. It Merges the original project's master branch with the current branch.
+    \item merge the current branch with our project's master branch
+\end{itemize}
+
+\section{sinnfer code detail}
+
+ 
+\subsection{ **File Sniffer (sniff.py, pg_raw_sniffer.py, raw_sniffer.py)**}
+
+   - **Purpose**: These modules are designed to monitor a directory for new or modified files and automatically register them in a PostgreSQL database by creating corresponding table schemas based on CSV file content.
+   
+   - **Core Functionality**: 
+     - `sniff.py` provides a core function (`sniff()`) that continuously checks for new or modified files in a directory. It calls event-specific functions like `on_create()`, `on_modified()`, or `on_delete()` when a change is detected.
+     - `pg_raw_sniffer.py` and `raw_sniffer.py` build on `sniff.py` to register these files into PostgreSQL. They extract schema from CSV files and use SQL queries to create tables in the database.
+     - In `pg_raw_sniffer.py`, the `registerfile()` function handles registering CSV files by generating and executing SQL queries using the `SQLGenerator` class.
+
+ 
+\subsection{**SQL Generation (sql_generator.py)**}
+   - **Purpose**: The `SQLGenerator` class creates SQL statements to generate tables from the inferred structure of a CSV file. 
+   - **Core Functionality**:
+     - Based on the file structure, the generator produces SQL statements such as `CREATE TABLE`, `DROP TABLE`, and complex view definitions for MIP (Medical Imaging Platform) data.
+     - It supports data inference for CSV files, where each column's type is determined dynamically, and appropriate SQL data types are assigned.
+     - The system also manages MIP-specific tables and views for both local and federated data sources, reflecting how medical data might be handled across different environments.
+
+ 
+\subsection{**Server Integration (server.py, pg_raw_server.py)**}
+   - **Purpose**: These files provide the RESTful API and server-side logic for interacting with the PostgreSQL database. 
+   - **Core Functionality**:
+     - `server.py` defines a Flask application that initializes the system, either using raw file sniffing or PostgreSQL-specific sniffer depending on the arguments provided.
+     - `pg_raw_server.py` defines endpoints like `/query` and `/query-start` for querying the PostgreSQL database and schemas. It wraps SQL execution in HTTP requests, allowing clients to interact with the system via REST APIs.
+     - Basic authentication is enforced for the database, ensuring only authorized users can perform operations.
+
+\subsection{ **Testing (test_pg_raw_sniffer.py, test_pg_raw_server.py)**}
+   - **Purpose**: These scripts contain unit tests for the core functionalities, ensuring that the system correctly detects file changes, registers files in the database, and responds appropriately to API requests.
+   - **Core Functionality**:
+     - `test_pg_raw_sniffer.py` tests the file sniffing process by simulating the creation of a CSV file and checking that it gets correctly registered into the PostgreSQL database.
+     - `test_pg_raw_server.py` tests the server by sending requests to the various REST endpoints and verifying the responses. It also checks pagination and result limits on queries.
+
+\subsection{**Medical Imaging Platform (MIP) Integration}(mip_cde.py)**
+   - **Purpose**: This file defines a set of medical data fields related to clinical and neuroimaging data.
+   - **Core Functionality**: 
+     - The list of fields, stored in `mipCde`, is likely used in conjunction with SQL view generation in `SQLGenerator` to create standardized tables or views based on medical data.
+
+
+\section{inferrer}
+It infers data types from various formats (CSV, JSON, log files) and generates schemas that can be used for processing and storing the data.
+
+ **Type Inference Framework (common.py, raw_types.py, csv_inferrer.py, json_inferrer.py, log_inferrer.py)**
+\subsection{**Core Inference Engine (common.py, raw_types.py)**}
+   - **Purpose**: 
+     - `raw_types\.py` defines a set of fundamental types (e.g., `rawIntType`, `rawFloatType`, `rawStringType`) used to describe the structure of a dataset. These types form the backbone of the system's ability to represent the inferred structure of data files. The types can be combined into complex structures like lists (`rawListType`) and records (`rawRecordType`).
+     - `common.py` provides utility functions like `sample_lines` to extract a portion of a file for analysis and defines custom exceptions like `InferrerException` for error handling during inference.
+
+\subsection{ **CSV Inference (csv_inferrer.py)**}
+   - **Purpose**: The `CSVInferrer` class attempts to infer the structure of CSV files by analyzing their contents.
+   - **Core Functionality**:
+     - The class uses Python's `csv` module along with options like delimiters and header detection to parse CSV files. It dynamically determines the data type of each column based on patterns (e.g., integers, floats, booleans).
+     - It supports detecting null values and generating a schema in the form of a `rawRecordType`, which represents the fields of the CSV file as a structured record with their associated types.
+
+\subsection{**JSON Inference (json_inferrer.py)**}
+   - **Purpose**: The `JSONInferrer` class parses JSON files and attempts to infer the structure of the data.
+   - **Core Functionality**:
+     - The class converts JSON objects into a Python representation using the `json` module and recursively determines the type of each element. It supports complex nested structures such as lists and dictionaries (which map to `rawListType` and `rawRecordType`).
+     - It can handle various JSON types, including nulls, booleans, integers, floats, strings, and objects.
+
+\subsection{**Log Inference (log_inferrer.py)**}
+   - **Purpose**: The `LogInferrer` class is designed to infer the structure of log files, which are usually unstructured or semi-structured text files.
+   - **Core Functionality**:
+     - The class uses regular expressions (regex) to match known log formats like Apache logs or syslogs. It attempts to detect log patterns and infer a schema based on the matched fields (e.g., hostname, timestamp, HTTP method).
+     - The system supports multiple log formats, and if a log file does not match any known pattern, it falls back to treating it as a simple text structure.
+
+\subsection{ **Data Structure Inference (inferrer.py, csv_inferrer.py, json_inferrer.py, log_inferrer.py)**}
+   - **Purpose**: The system is designed to infer the structure of various file types (CSV, JSON, logs) and convert that structure into a schema represented by `rawTypes`.
+   - **Core Functionality**:
+     - `inferrer.py` acts as a controller, directing the process of inferring file types based on the file format. For CSV files, it calls the `get_structure_from_csv_file` function, which reads the file, parses a sample, and uses the `CSVInferrer` to deduce the schema.
+     - Similar functions exist for JSON and log files, with each file type handled by its corresponding inferrer class (e.g., `JSONInferrer` for JSON, `LogInferrer` for logs).
+     - This system supports flexible handling of file encodings and delimiters, and it ensures that schemas are inferred efficiently by processing only a subset of the file (e.g., a sample of lines or bytes).
+
+ 
+\subsection{**Exception Handling (common.py)**}
+   - **Purpose**: The system includes custom exception handling for the inference process.
+   - **Core Functionality**:
+     - `InferrerException` and its subclasses (`ParseException`, `TypeInferenceException`) provide error messages when the system encounters problems, such as when a file cannot be parsed or the types cannot be inferred.
+     - This makes it easier to troubleshoot errors during inference and ensures that the system can handle a variety of edge cases in different file formats.
+
+\subsection{ **Schema Generation and Usage**}
+   - **Purpose**: Once the structure of a file is inferred, the resulting schema can be used to generate database tables or other structured representations.
+   - **Core Functionality**:
+     - The inferred schema is typically a `rawListType` containing a `rawRecordType`, which describes the fields (columns) of the file and their associated types (e.g., `int`, `string`, `float`). This schema can be translated into SQL statements to create tables in a database.
+     - For example, in a CSV file, each row corresponds to a record, and each field corresponds to a column with a specific type (e.g., integer, text).
+
+
+\section{SQLGenerator}
+
+The schema is translated into SQL statements for creating tables in a database by the `SQLGenerator` class found in the `sql_generator.py` file. This class takes the inferred schema (generated from the different file types like CSV, JSON, or logs) and generates SQL statements to create corresponding tables in a PostgreSQL database.
+
+### Here’s how the schema is translated into SQL:
+
+ 
+\subsection{**Schema Inference**:}
+   - The schema of a file is inferred using one of the inferrers (e.g., `CSVInferrer`, `JSONInferrer`, etc.). These inferrers return a `rawRecordType` which describes the fields (or columns) of the data and their respective types (e.g., `int`, `string`, `float`).
+ 
+\subsection{**SQL Generation (in `sql_generator.py`)**:}
+   - The `SQLGenerator` class is responsible for transforming the inferred schema into an actual SQL `CREATE TABLE` statement.
+   - The method `getCreateTableQuery()` in the `SQLGenerator` class takes the inferred schema and generates a corresponding SQL statement for creating a table.
+
+#### Example from `SQLGenerator`:
+Here’s a step-by-step breakdown of the process:
+
+- **Step 1**: Infer the schema of a file.
+   - For instance, if you have a CSV file with the columns `name` (string), `age` (int), and `salary` (float), the schema might be inferred as:
+     ```python
+     rawRecordType(OrderedDict([
+         ('name', rawStringType()), 
+         ('age', rawIntType()), 
+         ('salary', rawFloatType())
+     ]))
+     ```
+
+- **Step 2**: Pass the schema to `SQLGenerator`.
+   - The inferred schema is passed to the `SQLGenerator` class, which will handle converting it to SQL.
+
+- **Step 3**: Create the SQL statement.
+   - The `recurse()` method in `SQLGenerator` recursively processes each field in the schema and maps it to an appropriate SQL type (e.g., `integer`, `text`, `real` for floats). It generates the necessary SQL for creating the table【20†source】.
+
+- **Step 4**: Return the `CREATE TABLE` query.
+   - The `getCreateTableQuery()` method combines the field definitions into a `CREATE TABLE` SQL statement. For the schema example mentioned above, it might produce an SQL statement like:
+     ```sql
+     CREATE TABLE my_table (
+         "name" text,
+         "age" integer,
+         "salary" real
+     );
+     ```
+
+#### SQL Generation Example:
+Here's an actual code snippet from the `SQLGenerator` class that builds the `CREATE TABLE` statement:
+
+```python
+def recurse(self, rawType):
+    if isinstance(rawType, rawIntType):
+        return "integer"
+    elif isinstance(rawType, rawStringType):
+        return "text"
+    elif isinstance(rawType, rawFloatType):
+        return "real"
+    elif isinstance(rawType, rawBooleanType):
+        return "boolean"
+    elif isinstance(rawType, rawRecordType):
+        tmp = ""
+        for (k, v) in rawType.desc.items():
+            tmp += f'"{k}" {self.recurse(v)},\n'
+        return tmp[:-2]  # Remove trailing comma
+```
+
+This method recursively processes the fields in a `rawRecordType` and translates each into an appropriate SQL type. The resulting SQL is then returned and used to create the table in a database.
+
+### Usage Example in the System:
+
+When a new CSV file is detected by the sniffer (for example, in `pg_raw_sniffer.py`), it calls the `SQLGenerator` to create the necessary SQL statement to register the file as a table in PostgreSQL:
+- The inferred schema from the CSV is passed to the `SQLGenerator`.
+- The `SQLGenerator` produces the SQL query (`CREATE TABLE ...`).
+- The query is executed by the database connection to create the table in PostgreSQL.
+
+This is how the schema, inferred from different file formats, is translated into SQL statements to create tables in the database.
+
+\section{pg_raw_sniffer}
+\textbf{Function registerfile}
+Given the path of a csv file, creates the corresponding table in pgRAW database and updates.
+pgRAW configuration in order to access the file's content.
+\end{draft}
+
+\end{document}

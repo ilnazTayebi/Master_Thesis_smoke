@@ -1,0 +1,28 @@
+\begin{figure}[h!]
+\centering
+\begin{minted}
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+breaklines=true
+]{text}
+EXPLAIN SELECT S.S_NAME, SUM(PS.PS_SUPPLYCOST) AS TOTAL_SUPPLY_COST, RANK() OVER (ORDER BY SUM(PS.PS_SUPPLYCOST) DESC) AS RANK FROM Supplier S JOIN Partsupp PS ON S.S_SUPPKEY = PS.PS_SUPPKEY GROUP BY S.S_NAME;
+                                        QUERY PLAN
+----------------------------------------------------------------
+WindowAgg  (cost=1446.06..1446.08 rows=1 width=72)
+  ->  Sort  (cost=1446.06..1446.06 rows=1 width=64)
+        Sort Key: (sum(ps.ps_supplycost)) DESC
+        ->  GroupAggregate  (cost=1446.02..1446.05 rows=1 width=64)
+              Group Key: s.s_name
+              ->  Sort  (cost=1446.02..1446.03 rows=1 width=50)
+                    Sort Key: s.s_name
+                    ->  Nested Loop  (cost=0.00..1446.01 rows=1 width=50)
+                          Join Filter: (s.s_suppkey = ps.ps_suppkey)
+                          ->  Seq Scan on supplier s  (cost=0.00..17.00 rows=1 width=36)
+                          ->  Seq Scan on partsupp ps  (cost=0.00..1429.00 rows=1 width=22)
+\end{minted}
+\caption[Query Plan for Database: pgRaw and Q9.]{Query Plan for Database: pgRaw and Q9. Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:explain-q9-db1}
+\end{figure}

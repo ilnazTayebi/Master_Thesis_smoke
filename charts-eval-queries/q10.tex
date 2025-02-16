@@ -1,0 +1,20 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT C.C_NAME, SUM(O.O_TOTALPRICE) AS TOTAL_ORDER_VALUE
+    FROM Customer C
+    JOIN Orders O ON C.C_CUSTKEY = O.O_CUSTKEY
+    GROUP BY C.C_NAME
+    ORDER BY TOTAL_ORDER_VALUE DESC
+    LIMIT 5;
+    \end{minted}
+\caption[Q10: query to evaluate the query planner's efficiency in handling advanced operations.]{Q10: Fetch the top 5 customers with the highest total order value. Query to evaluate the query planner's efficiency in handling advanced operations.}
+\label{fig:eval-q10}
+\end{figure}

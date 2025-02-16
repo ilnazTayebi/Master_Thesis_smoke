@@ -1,0 +1,39 @@
+\begin{tikzpicture}[
+    node distance=1cm and 1.5cm, 
+    box/.style={rectangle, draw, rounded corners, minimum width=2.5cm, minimum height=0.8cm, align=center, font=\small},
+    arrow/.style={thick, ->, >=stealth},
+    dashedarrow/.style={thick, dashed, red, ->, >=stealth},
+    scale=0.85, every node/.style={transform shape}
+]
+
+% Nodes
+\node[box] (tpm) {TPM};
+\node[box, below left=of tpm] (endorsementSeed) {Endorsement Seed};
+\node[box, below right=of tpm] (storageSeed) {Storage Seed};
+\node[box, below=of endorsementSeed] (endorsementKey) {Endorsement Key (EK)};
+\node[box, below=of storageSeed] (storageRootKey) {Storage Root Key (SRK)};
+\node[box, below left=of storageRootKey] (attestationKey) {Attestation Identity Key (AIK)};
+\node[box, below right=of storageRootKey] (applicationKey) {Application key(s)};
+
+% Parent object arrows
+\draw[arrow] (tpm) -- (endorsementSeed);
+\draw[arrow] (tpm) -- (storageSeed);
+\draw[arrow] (endorsementSeed) -- (endorsementKey);
+\draw[arrow] (storageSeed) -- (storageRootKey);
+\draw[arrow] (storageRootKey) -- (attestationKey);
+\draw[arrow] (storageRootKey) -- (applicationKey);
+
+% Key attestation dashed arrows
+\draw[dashedarrow] (endorsementKey) -- (attestationKey);
+\draw[dashedarrow] (attestationKey) to[bend left=-30] (applicationKey);
+
+% Legend
+\node[below=2.5cm of applicationKey.west, align=left, font=\small] (legend) {
+\begin{tabular}{@{}ll}
+\textbf{Legend:} \\
+\textcolor{black}{\textbf{\textemdash\textgreater}} & Parent object \\
+\textcolor{red}{\textbf{\textemdash\textemdash\textemdash\textemdash\textgreater}} & Key attestation
+\end{tabular}
+};
+
+\end{tikzpicture}

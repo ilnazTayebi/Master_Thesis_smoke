@@ -1,0 +1,17 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    UPDATE pg_class SET reltuples=20000.0, relpages=410 WHERE relname = 'part' ;
+    
+    UPDATE pg_statistic SET stadistinct =20000.0 WHERE starelid = (SELECT oid FROM pg_class WHERE relname = 'part');
+    \end{minted}
+\caption[Sample initialising statistics metadata for PostgresSemiRaw]{Sample initialising statistics metadata for PostgresSemiRaw.}
+\label{fig:eval-query-statistics-metadata}
+\end{figure}

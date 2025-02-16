@@ -1,0 +1,15 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT stadistinct, stanullfrac, stakind1, stavalues1, stanumbers1 FROM pg_statistic WHERE starelid = 'supplier'::regclass;
+    \end{minted}
+\caption[pg\_statistic provides column-level statistics]{pg\_statistic provides column-level statistics such as distinct values and null fractions. (\textbf{stadistinct}: the number of distinct values in the column, \textbf{stanullfrac}: the Fraction of rows where the column is null,  \textbf{stakind1}, \textbf{stavalues1}, and \textbf{stanumbers1}: Store histograms or most common values). Query over the TPC-H dataset with the \acrshort{sf} 0.1.}
+\label{fig:query-pg-class}
+\end{figure}

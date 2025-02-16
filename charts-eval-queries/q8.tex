@@ -1,0 +1,21 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT C.C_NAME
+    FROM Customer C
+    WHERE EXISTS (
+        SELECT 1
+        FROM Orders O
+        WHERE O.O_CUSTKEY = C.C_CUSTKEY AND O.O_TOTALPRICE > 50000
+    );
+    \end{minted}
+\caption[Q8: query to evaluate the effect of metadata on the ability to optimise correlated subqueries.]{Q8: Fetch customers who placed orders worth more than \$50,000. Query to evaluate the effect of metadata on the ability to optimize correlated subqueries and EXISTS.}
+\label{fig:eval-q8}
+\end{figure}

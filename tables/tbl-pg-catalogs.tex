@@ -1,0 +1,20 @@
+\begin{table*}[h!]
+\centering
+\caption[A list of PostgreSQL table catalogs.]{A list of PostgreSQL table catalogs that are effective for query optimization. (\textbf{PK}: Primary keys, \textbf{FK}: Foreign keys) \cite{noauthor_overview_2021}}
+\begin{tabularx}{\textwidth}{ll}
+    \toprule   
+   \textbf{Catalog / View}&\textbf{Description}\\
+    \midrule
+pg\_class&Metadata about tables, views, indexes, and other relations.\\
+pg\_attribute&Metadata about columns in tables and views.\\
+pg\_type&Metadata about data types used in table columns.\\
+pg\_constraint&Metadata about table constraints (e.g., PK, FK ).\\
+pg\_index&Metadata about indexes on tables.\\
+pg\_namespace&Metadata about schemas (namespaces).\\
+information\_schema.tables&High-level metadata about tables (readable version).\\
+information\_schema.columns&High-level metadata about columns (readable version).\\
+pg\_stats&Column-level statistics for query optimization.\\
+      \bottomrule
+\end{tabularx}
+ \label{tab:tbl-pg-catalogs}
+\end{table*}

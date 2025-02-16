@@ -1,0 +1,343 @@
+% !TeX document-id = {bd69b656-54da-46f4-a905-dc662e17f4b3}
+% !TeX TXS-program:compile = txs:///pdflatex/[-shell-escape -halt-on-error]
+
+\documentclass[fontsize=10pt,openright,oneside,paper=a4,BCOR=1cm,numbers=noenddot,english]{scrbook}
+% \documentclass[fontsize=10pt,openright,oneside,paper=a4,BCOR=1cm,numbers=noenddot,ngerman]{scrbook} % German
+
+% Patch page headers to not be UPPER CASE
+\makeatletter
+\renewcommand\scr@chapter@after@hyperref@patch{}
+\makeatother
+
+\usepackage[top=3.5cm, bottom=3.5cm, left=3.0cm, right=4.0cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic definitions, to be adjusted individually
+\newcommand{\authornamefirst}{Ilnaz}
+\newcommand{\authornamelast}{Tayebi}
+\newcommand{\matrikelnummer}{107323}
+\newcommand{\authorhomestreet}{Bräugasse 10}
+\newcommand{\authorpostalcodecity}{94032, Passau}
+
+\newcommand{\worktitle}{Efficient Indexing of Raw Data Files}
+
+\newcommand{\thesistype}{Master's Thesis}
+
+\newcommand{\courseofstudies}{Computer Science}
+
+\newcommand{\thesisdate}{\today}   %% in ISO 8601 format
+
+\newcommand{\thesisprof}{Prof. Dr. Stefanie Scherzinger}
+\newcommand{\thesisproftwo}{Prof. Dr. Harald Kosch}
+\newcommand{\chair}{\mbox{Chair of Scalable Database Systems}}
+
+\newcommand{\secondchair}{Chair of Distributed Information Systems}
+
+% \newcommand{\advisor}{Your Advisor (usually not the professor)}
+
+
+\newcommand{\contactprofone}{
+\thesisprof \\
+\chair \\
+University of Passau \\
+Email:~{\small \href{mailto:stefanie.scherzinger@uni-passau.de}{\texttt{stefanie.scherzinger@uni-passau.de}}}  \\
+Web:~{\small
+\url{https://www.fim.uni-passau.de/en/database-systems/}}\\}
+
+% Only for master's thesis. Just comment these lines if you don't have or need a second supervisor.
+\newcommand{\contactproftwo}{
+\thesisproftwo \\
+\secondchair \\
+University of Passau \\ % German: Universität Passau \\
+Email:~{\small \href{mailto:<second.prof>@uni-passau.de}{\texttt{Harald.Kosch@uni-passau.de}}}  \\
+Web:~{\small
+\url{https://www.fim.uni-passau.de/en/distributed-information-systems}}\\}
+
+
+%\newcommand{\drosera}{\textit{Drosera}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PACKAGES:
+
+\usepackage{xcolor}
+\usepackage{xargs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% REMOVE ME LATER %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Todo notes
+\usepackage[colorinlistoftodos,prependcaption]{todonotes}
+\makeatletter
+\renewcommand{\todo}[2][]{\tikzexternaldisable\@todo[inline,#1]{#2}\tikzexternalenable}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% REMOVE ME LATER %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Better unsrt style with support for DOIs and URLs
+\usepackage[numbers]{natbib}
+% Use better appendices
+\usepackage{appendix}
+% German paragraph skip
+\usepackage{parskip}
+% Encoding. Use utf8. We are now in the 21st century already :-)
+\usepackage[utf8]{inputenc}
+% Index-generation
+\usepackage{makeidx}
+% Einbinden von URLs:
+\usepackage{url}
+% Include Graphic-files:
+\usepackage{graphicx}
+% Include PDF links
+\usepackage{listings}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multirow}
+%mathstuff
+\usepackage[cmex10]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{longtable}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage{mathtools}
+\usepackage{extarrows}
+\usepackage{hhline}
+\usepackage[shortlabels]{enumitem}
+\usepackage{environ}
+\usepackage{xifthen}
+\usepackage{capt-of}
+\usepackage{custom-style}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{csquotes}
+
+\newcounter{mtpage}
+% Global footnote counter
+\counterwithout{footnote}{chapter}
+
+% hyperref for nice inner-PDF hyperlinks
+\usepackage[pdftex,
+bookmarks=true,
+pdfauthor={{{\authornamefirst \authornamelast}}},
+pdftitle={{{\worktitle}}},
+hidelinks
+]{hyperref}
+% cleveref for even better own references
+\usepackage[capitalise]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OTHER SETTINGS:
+\pgfplotsset{
+  compat=1.18,
+  scaled y ticks=false,
+}
+
+% Pagestyle:
+\pagestyle{headings}
+
+% Avoid 'overhang':
+\sloppy
+
+% Choose language
+\newcommand{\setlang}[1]{\selectlanguage{#1}\nonfrenchspacing}
+
+% English...
+\usepackage[english]{babel}
+\setlang{english}
+% ... or German?
+%\usepackage[ngerman]{babel}
+%\setlang{ngerman}
+
+\usepackage[iso,english]{isodate} % Don't change the language here!
+
+\usepackage[Bjornstrup]{fncychap}
+
+\definecolor{bblue}{HTML}{00A2FF}
+\definecolor{rred}{HTML}{FF2600}
+\definecolor{ggreen}{HTML}{61D836}
+\definecolor{ppurple}{HTML}{C24885}
+\definecolor{oorange}{HTML}{F8BA00}
+\definecolor{ggray}{HTML}{5F5F5F}
+\definecolor{ppink}{HTML}{e81cbf}
+
+% Tikz Externalize
+\usetikzlibrary{external, backgrounds, shapes.geometric, arrows, positioning, fit, decorations.pathreplacing, shapes.multipart}
+
+\tikzexternalize[prefix=cache/]
+
+% Pretty listings
+\usepackage[newfloat,cachedir=cache/]{minted}
+\usepackage{xcolor} % to access the named colour LightGray
+\definecolor{LightGray}{gray}{0.9}
+\usepackage{caption}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\usepackage{subcaption}
+
+% Automatic quotes
+%\usepackage[autostyle]{csquotes}
+%\MakeOuterQuote{"}
+
+% Acronym
+
+\usepackage{glossaries}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%Glossries%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+% ------------------------------------------------------------------------------------------
+% Use this if-flag to show or hide the draft content
+% ------------------------------------------------------------------------------------------
+\newif\ifshow
+\showtrue % \showtrue or \showfalse
+% ------------------------------------------------------------------------------------------
+\NewEnviron{revise}[1][red]{
+  \ifshow
+    \textcolor{#1}{\BODY}
+  \fi
+}
+% ------------------------------------------------------------------------------------------
+
+
+% Custom commands
+\let\oldphi\phi
+\let\phi\varphi
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+
+% TITLE:
+
+\begin{document}
+\frontmatter
+\thispagestyle{empty}
+\newpage
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tabular}{lr}
+\includegraphics[width=6.5cm]{img/logouni_en.png}
+% \includegraphics[width=6.5cm]{img/logouni.png} % German
+\end{tabular}
+
+\vspace{3cm}
+\Large University of Passau
+% \Large Universität Passau % German
+\\
+\Large Faculty of Computer Science and Mathematics
+% \Large Fakultät für Informatik und Mathematik % German
+\\
+\vspace{0.3cm}
+\Large {\chair }
+\\
+\Large \thesisprof
+
+\end{center}
+
+
+\vspace{2.5cm}
+
+\begin{center}
+        % Master's thesis, Bachelor's thesis, Programming project
+        {\Large \thesistype\\ in\\ \courseofstudies\\} 
+\end{center}
+
+\begin{center}
+        \settowidth{\baselineskip}{0.4cm}
+        {\LARGE \textbf{\worktitle}}
+        \\
+        {\Large
+        \vspace{1cm}
+        \authornamefirst~\authornamelast \\ \matrikelnummer \\
+        }
+\end{center}
+
+\vfill {% \settowidth{\baselineskip}{0.2cm}
+
+\vfill
+
+
+{\large
+\begin{tabular}[l]{llll}
+
+Date:       & \thesisdate %%(\LaTeX{}$2_\epsilon$ run \today) % German: Datum:
+\smallskip \\
+Supervisors:   & \thesisprof \\ % German: Prüfer:
+	& \thesisproftwo \\
+% Advisor: & \advisor \\ % German: Betreuer:
+\end{tabular}}
+} \cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{superviser-contact}
+% MAIN PART:
+
+% Acknowledgement. 
+\input{chapters/00_acknowledgement}
+\cleardoublepage
+
+% Abstract. 
+\input{chapters/0_abstract}
+
+% Table of contents
+\tableofcontents
+
+\input{chapters/G_glossries}
+\printglossary[type=\acronymtype]
+
+% Main body of thesis
+\mainmatter
+\input{chapters/1_introduction}
+\input{chapters/2_background}
+\input{chapters/3_related}
+\input{chapters/4_design}
+% \input{chapters/5_implementation}
+\input{chapters/6_evaluation}
+\input{chapters/7_conclusions}
+
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+% References (Literaturverzeichnis):
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+% a) Style (alphabetic or numeric)
+%\bibliographystyle{alpha}
+\bibliographystyle{unsrtnat}
+% \bibliographystyle{ACM-ReferenceFormat}
+% b) The File
+\bibliography{Bibliography}
+\begin{appendices}
+\input{chapters/A_appendix}
+\end{appendices}
+\cleardoublepage
+\input{legals}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

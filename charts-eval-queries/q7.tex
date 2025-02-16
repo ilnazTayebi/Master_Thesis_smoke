@@ -1,0 +1,21 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}    
+    SELECT P.P_NAME
+    FROM Part P
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM Partsupp PS
+        WHERE PS.P_PARTKEY = P.P_PARTKEY
+    );
+    \end{minted}
+\caption[Q7: query to evaluate the effect of metadata on the ability to optimise correlated subqueries.]{Q7: Fetch parts that have never been supplied. Query to evaluate the effect of metadata on the ability to optimize correlated subqueries and EXISTS.}
+\label{fig:eval-q7}
+\end{figure}

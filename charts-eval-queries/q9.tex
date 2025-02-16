@@ -1,0 +1,19 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}    
+    SELECT S.S_NAME, SUM(PS.PS_SUPPLYCOST) AS TOTAL_SUPPLY_COST,
+           RANK() OVER (ORDER BY SUM(PS.PS_SUPPLYCOST) DESC) AS RANK
+    FROM Supplier S
+    JOIN Partsupp PS ON S.S_SUPPKEY = PS.PS_SUPPKEY
+    GROUP BY S.S_NAME;
+    \end{minted}
+\caption[Q9: query to evaluate the query planner's efficiency in handling advanced queries operations.]{Q9: Rank suppliers based on their total supply cost. Query to evaluate the query planner's efficiency in handling advanced operations.}
+\label{fig:eval-q9}
+\end{figure}

@@ -1,0 +1,18 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize    
+    ]{text}
+     EXPLAIN select * from LINEITEM;
+                               QUERY PLAN                           
+    ----------------------------------------------------------------
+      Seq Scan on lineitem  (cost=0.00..17293.72 rows=600572 width=117)
+    (1 row)
+    \end{minted}
+\caption[Example of an EXPLAIN Query]{Example of an EXPLAIN Query with the startup cost of 0.00 milliseconds and the total cost of 17293.72 milliseconds. The estimated number of rows is 600572, and the estimated average width of rows is 117. Query over the TPC-H dataset with the \acrfull{sf} 0.1.}
+\label{fig:explain-simple-query}
+\end{figure}

@@ -1,0 +1,21 @@
+\begin{table*}[h!]
+\centering
+\caption[Table statistics sample with the \acrshort{sf} 0.1]{A statistics regarding the count of tuples and the page size of the table over the TPC-H dataset with the \acrshort{sf} 0.1. The relname is the
+name of the table. (\textbf{relpages}: The size of the on-disk representation of
+this table in pages. \textbf{reltuples}: The number of live rows in the table.)}
+\begin{tabular}{lrrr}
+    \toprule   
+  \textbf{relname}&\textbf{reltuples}&\textbf{relpages}\\
+    \midrule
+nation      & 25.0      & 1     \\
+region      & 5.0       & 1     \\
+part        & 20000.0   & 410   \\
+supplier    & 1000.0    & 23    \\
+partsupp    & 80000.0   & 1751  \\
+customer    & 15000.0   & 361   \\
+orders      & 150000.0  & 2613  \\
+lineitem    & 600572.0  & 11266 \\
+      \bottomrule
+\end{tabular}
+ \label{tab:tbl-eval-tpch-stas-list}
+\end{table*}

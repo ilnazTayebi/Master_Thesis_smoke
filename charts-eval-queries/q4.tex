@@ -1,0 +1,20 @@
+\begin{figure}[h!]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT P.P_NAME, S.S_NAME, PS.PS_SUPPLYCOST
+    FROM Part P
+    JOIN Partsupp PS ON P.P_PARTKEY = PS.PS_PARTKEY
+    JOIN Supplier S ON PS.PS_SUPPKEY = S.S_SUPPKEY
+    JOIN Nation N ON S.S_NATIONKEY = N.N_NATIONKEY
+    WHERE N.N_REGIONKEY = 2;
+    \end{minted}
+\caption[Q4: query to evaluate the effect of metadata on table joins, where primary keys, foreign keys, and statistics affect the query plan.]{Q4: Fetch parts supplied by suppliers in a specific region. Evaluate the effect of metadata on table joins, where primary keys, foreign keys, and statistics affect the query plan.}
+\label{fig:eval-q4}
+\end{figure}

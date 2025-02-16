@@ -1,0 +1,23 @@
+\begin{figure}[h]
+\centering
+    \begin{minted}
+    [
+    framesep=2mm,
+    baselinestretch=1.2,
+    bgcolor=LightGray,
+    fontsize=\footnotesize,
+    breaklines    
+    ]{text}
+    SELECT
+        relname,
+        reltuples,
+        relpages
+    FROM
+        pg_class
+    WHERE
+        relkind = 'r'  -- Ordinary tables only
+      AND relnamespace::regnamespace NOT IN ('pg_catalog', 'information_schema')
+    \end{minted}
+\caption[Extract statistics from database]{Extract statistics regarding the count of tuples and the page size of the table from the database. The relkind specifies the relation kind. The relname is the name of the table. The relpages denotes the size of the on-disk representation of this table in pages. The reltuples indicates the number of live rows in the table.}
+\label{fig:query-db-statistics}
+\end{figure}
