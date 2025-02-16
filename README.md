@@ -6,7 +6,7 @@ This smoke report intends to be used in the thesis's reproduction package.
 
 ## Reproduction Package
 + Clone the project
-'''sh
+```sh
 git clone https://github.com/ilnazTayebi/Master_Thesis_smoke.git
-'''
+```
 
