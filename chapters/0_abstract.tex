@@ -3,17 +3,36 @@
 \thispagestyle{plain}
 
 \section*{Abstract}
-In recent decades, the number of data-intensive applications has increased significantly, significantly increasing the volume of data generated and processed. This global data growth demands that data scientists allocate more time to data preparation, loading, and query execution. Such challenges make it difficult for data scientists to conduct ad-hoc data exploration without dealing with data ingestion projects. Various database systems have been developed to address latency issues related to the \acrfull{etl} process to minimise the time it takes to submit queries and retrieve data. For example, Oracle offers the option to use external tables, which enables Oracle databases to query external files, such as flat 
-files or \acrfull{csv} files, as if they were regular database tables. However, flat files remain outside the traditional \acrfull{dbms}, lacking support for indices, materialised views, and other advanced \acrshort{dbms} optimisations.
-
-The ideal system would require zero initialisation overhead. Several works have addressed the latency problem associated with 
-\acrshort{etl} processes. Recent research aims to enable queries over flat files without necessitating data loading into a database, thereby reducing the time required to retrieve data for querying. An illustration of this is PostgresRaw, a modified version of PostgreSQL 9.6.3, which aims to optimise query execution runtime by executing queries over raw files and minimising parsing and tokenising costs. Additionally, PostgresRaw introduces a new raw file indexing structure that adaptively adds metadata based on the system workload. PostgresRaw can eliminate loading costs and, in many cases, match or even outperform plain PostgreSQL in terms of query performance.
-
-PostgresRaw eliminates the phase of loading data into the database by accessing the data over the raw data file outside the \acrshort{dbms}. Additionally, PostgresRaw utilises lazy indexing to delay index creation until a query requires it. When a query is made, the system checks for an index on the queried attributes. If not, it starts building the index while processing the query. The lazy indexing process allows indices to be built incrementally and partially as data is accessed. Instead of creating a complete index all at once, the system gradually adds to the index with each query that needs it.
-
-Database optimisation techniques involve continuously reorganising data on the fly and creating indices based on the specific query being run, which helps improve query processing. However, there is an initial query latency issue, as the first few queries may be slower because they operate on unindexed data. Subsequently, queries will become faster as the data becomes indexed.
-
-Our contribution to this work involves providing a modified version of the PostgresRaw system called \textit{PostgresSemiRaw}. PostgresSemiRaw aims to address the initial query latency issue and enhance query performance by providing adequate metadata about raw data files to the database. While providing valid metadata and conducting data profiling may appear to be an extra step in the \acrshort{dbms} initialisation process, our experimental evaluation indicates that providing the appropriate metadata will yield a trade-off that reduces the query execution time, particularly for ad-hoc and complex queries.
+Les systèmes informatiques modernes intègrent des architectures distribuées avec des mi-
+croservices déployés sur des conteneurs Docker orchestrés via Kubernetes. Les bases de
+données relationnelles comme PostgreSQL utilisent des index B-Tree et des transactions
+ACID pour garantir l’intégrité des données, tandis que les bases NoSQL comme MongoDB
+exploitent la réplication et le sharding pour la scalabilité. Les algorithmes de machine learn-
+ing, souvent implémentés en Python avec TensorFlow ou PyTorch, nécessitent des GPU
+pour accélérer l’entraînement des modèles neuronaux profonds. En cybersécurité, le chiffre-
+ment RSA et AES sont couramment employés pour protéger les transmissions via SSL/TLS,
+et les pare-feu assurent la sécurité du réseau contre les attaques DDoS. Les développeurs
+utilisent Git pour le versionnage du code et exploitent des pipelines CI/CD avec Jenkins ou
+Les systèmes informatiques modernes intègrent des architectures distribuées avec des mi-
+croservices déployés sur des conteneurs Docker orchestrés via Kubernetes. Les bases de
+données relationnelles comme PostgreSQL utilisent des index B-Tree et des transactions
+ACID pour garantir l’intégrité des données, tandis que les bases NoSQL comme MongoDB
+exploitent la réplication et le sharding pour la scalabilité. Les algorithmes de machine learn-
+ing, souvent implémentés en Python avec TensorFlow ou PyTorch, nécessitent des GPU
+pour accélérer l’entraînement des modèles neuronaux profonds. En cybersécurité, le chiffre-
+ment RSA et AES sont couramment employés pour protéger les transmissions via SSL/TLS,
+et les pare-feu assurent la sécurité du réseau contre les attaques DDoS. Les développeurs
+utilisent Git pour le versionnage du code et exploitent des pipelines CI/CD avec Jenkins ou
+Les systèmes informatiques modernes intègrent des architectures distribuées avec des mi-
+croservices déployés sur des conteneurs Docker orchestrés via Kubernetes. Les bases de
+données relationnelles comme PostgreSQL utilisent des index B-Tree et des transactions
+ACID pour garantir l’intégrité des données, tandis que les bases NoSQL comme MongoDB
+exploitent la réplication et le sharding pour la scalabilité. Les algorithmes de machine learn-
+ing, souvent implémentés en Python avec TensorFlow ou PyTorch, nécessitent des GPU
+pour accélérer l’entraînement des modèles neuronaux profonds. En cybersécurité, le chiffre-
+ment RSA et AES sont couramment employés pour protéger les transmissions via SSL/TLS,
+et les pare-feu assurent la sécurité du réseau contre les attaques DDoS. Les développeurs
+utilisent Git pour le versionnage du code et exploitent des pipelines CI/CD avec Jenkins ou
 
  
 
