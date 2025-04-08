@@ -1,7 +1,7 @@
 # Master's Thesis: Efficient Indexing of Raw Data Files
 
 ## Description
-This project provides the smoke report for the Master's thesis on Efficient Indexing of Raw Data Files.
+This project provides the smoke report for the Master's thesis on Efficient Indexing of Raw Data Files. This is a sample report and not a complete one.
 This smoke report intends to be used in the thesis's reproduction package.
 
 ## Reproduction Package
